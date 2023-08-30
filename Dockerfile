@@ -17,4 +17,4 @@ COPY ./ml_models /app/ml_models
 COPY ./data /app/data
 
 # 
-CMD ["uvicorn", "challenge.api:app", "--reload", "--host", "127.0.0.1", "--port", "80"]
+CMD ["uvicorn", "challenge.api:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
