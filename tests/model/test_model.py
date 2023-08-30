@@ -1,5 +1,6 @@
 import unittest
 import pandas as pd
+import os
 
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
@@ -28,7 +29,10 @@ class TestModel(unittest.TestCase):
     def setUp(self) -> None:
         super().setUp()
         self.model = DelayModel()
-        self.data = pd.read_csv(filepath_or_buffer="../data/data.csv")
+        DATA_FOLDER = 'data'
+        DATA_FILE = 'data.csv'
+        path_to_save = os.path.join(DATA_FOLDER, DATA_FILE)
+        self.data = pd.read_csv(path_to_save)
         
 
     def test_model_preprocess_for_training(
@@ -71,11 +75,11 @@ class TestModel(unittest.TestCase):
         _, features_validation, _, target_validation = train_test_split(features, target, test_size = 0.33, random_state = 42)
 
         self.model.fit(
-            features=features,
-            target=target
+            features,
+            target
         )
 
-        predicted_target = self.model._model.predict(
+        predicted_target = self.model.predict(
             features_validation
         )
 
@@ -95,7 +99,7 @@ class TestModel(unittest.TestCase):
         )
 
         predicted_targets = self.model.predict(
-            features=features
+            features
         )
 
         assert isinstance(predicted_targets, list)

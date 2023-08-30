@@ -1,19 +1,18 @@
 import unittest
-
 from fastapi.testclient import TestClient
-from challenge import app
+from challenge import application
 
 
 class TestBatchPipeline(unittest.TestCase):
     def setUp(self):
-        self.client = TestClient(app)
+        self.client = TestClient(application)
         
     def test_should_get_predict(self):
         data = {
             "flights": [
                 {
                     "OPERA": "Aerolineas Argentinas", 
-                    "TIPOVUELO": "N", 
+                    "TIPOVUELO": "I", 
                     "MES": 3
                 }
             ]

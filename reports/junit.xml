@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="4" time="7.511" timestamp="2023-08-29T20:13:53.553231" hostname="ONNET057NB"><testcase classname="tests.api.test_api.TestBatchPipeline" name="test_should_failed_unkown_column_1" time="0.139" /><testcase classname="tests.api.test_api.TestBatchPipeline" name="test_should_failed_unkown_column_2" time="0.065" /><testcase classname="tests.api.test_api.TestBatchPipeline" name="test_should_failed_unkown_column_3" time="0.019" /><testcase classname="tests.api.test_api.TestBatchPipeline" name="test_should_get_predict" time="0.049"><failure message="AssertionError: {'predict': [1]} != {'predict': [0]}&#10;- {'predict': [1]}&#10;?              ^&#10;&#10;+ {'predict': [0]}&#10;?              ^">self = &lt;tests.api.test_api.TestBatchPipeline testMethod=test_should_get_predict&gt;
+
+    def test_should_get_predict(self):
+        data = {
+            "flights": [
+                {
+                    "OPERA": "Aerolineas Argentinas",
+                    "TIPOVUELO": "I",
+                    "MES": 3
+                }
+            ]
+        }
+        # when("xgboost.XGBClassifier").predict(ANY).thenReturn(np.array([0])) # change this line to the model of chosing
+        response = self.client.post("/predict", json=data)
+        self.assertEqual(response.status_code, 200)
+&gt;       self.assertEqual(response.json(), {"predict": [0]})
+E       AssertionError: {'predict': [1]} != {'predict': [0]}
+E       - {'predict': [1]}
+E       ?              ^
+E       
+E       + {'predict': [0]}
+E       ?              ^
+
+tests\api\test_api.py:23: AssertionError</failure></testcase></testsuite></testsuites>
