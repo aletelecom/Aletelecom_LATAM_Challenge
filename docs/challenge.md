@@ -11,3 +11,8 @@ After reading the "exploration.ipynb" notebook, and cheking that there is no dif
 I will use a trained model which I will save in a new folder named "ml_models". This model will be the one that will do the predictions when they are requested. This model was savedm and will be loeaded using two new methods I created in the __Delay_Model__ class.
 
 In the __api.py__ file, I modified the __post__ method to raise exceptions if no data is passed, or if an unknown column is passed to the model for predictions.
+
+
+### Make file changes
+
+I had to completely redo the "Makefile" to be able to work with Windows because my development enviroment is in Windows, and it did not work as originally created.
