@@ -2,3 +2,5 @@
 .vscode
 .coverage
 .DS_Store
+send_request.py
+reports

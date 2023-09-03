@@ -26,10 +26,9 @@ install:		## Install dependencies
 	python -m pip install -r requirements-test.txt
 	python -m pip install -r requirements.txt
 
-STRESS_URL = http://127.0.0.1:8000 
+STRESS_URL = https://aletelcom-latam-challenge-app.onrender.com
 .PHONY: stress-test
 stress-test:
-
 	@if not exist reports mkdir reports
 	python -m locust -f tests/stress/api_stress.py --print-stats --html reports/stress-test.html --run-time 60s --headless --users 100 --spawn-rate 1 -H $(STRESS_URL)
 
